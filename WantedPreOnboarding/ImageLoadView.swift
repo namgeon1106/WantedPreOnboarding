@@ -46,5 +46,23 @@ class ImageLoadView: UIStackView {
             subView.translatesAutoresizingMaskIntoConstraints = false
             self.addArrangedSubview(subView)
         }
+        
+        button.addTarget(self, action: #selector(loadImage), for: .touchUpInside)
+    }
+    
+    @objc func loadImage() {
+        guard let url = URL(string: "https://picsum.photos/90/50") else {
+            return
+        }
+        
+        imageView.image = UIImage(systemName: "photo")
+        
+        DispatchQueue.global().async {
+            guard let data = try? Data(contentsOf: url) else { return }
+            
+            DispatchQueue.main.async { [unowned self] in
+                self.imageView.image = UIImage(data: data)
+            }
+        }
     }
 }
