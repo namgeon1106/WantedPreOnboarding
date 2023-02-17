@@ -13,6 +13,18 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         view.backgroundColor = .systemBackground
+        
+        let imageLoadView = ImageLoadView()
+        imageLoadView.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(imageLoadView)
+        
+        NSLayoutConstraint.activate([
+            imageLoadView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            imageLoadView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            imageLoadView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            imageLoadView.heightAnchor.constraint(equalToConstant: 100)
+        ])
     }
 
 
