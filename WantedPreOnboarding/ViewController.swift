@@ -18,6 +18,13 @@ class ViewController: UIViewController {
     }()
     
     let imageLoadViews = (1...5).map { _ in ImageLoadView() }
+    private let loadAllButton = {
+        let button = UIButton()
+        button.configuration = .filled()
+        button.setTitle("Load All Images", for: .normal)
+        
+        return button
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +53,13 @@ class ViewController: UIViewController {
             
             vStack.addArrangedSubview(imageLoadView)
         }
+        
+        loadAllButton.addTarget(self, action: #selector(loadImages), for: .touchUpInside)
+        vStack.addArrangedSubview(loadAllButton)
+    }
+    
+    @objc private func loadImages() {
+        imageLoadViews.forEach { $0.loadImage() }
     }
 }
 
